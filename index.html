@@ -1,243 +1,738 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ahmed Mohamed Naguib | Portfolio</title>
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmed Mohamed Naguib — Backend Engineer</title>
+<meta name="description" content="Backend engineer building scalable REST and GraphQL services in NestJS, PostgreSQL and Redis. Computer &amp; AI Engineering at Ain Shams University &amp; University of East London.">
+<meta name="author" content="Ahmed Mohamed Naguib">
+<meta name="theme-color" content="#08090d">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ahmed Mohamed Naguib — Backend Engineer">
+<meta property="og:description" content="Scalable REST &amp; GraphQL services in NestJS, PostgreSQL and Redis. Systems that hold up under load.">
+<meta property="og:image" content="images/ahmed_naguib.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2308090d'/%3E%3Cpath d='M22 72 L38 28 L50 28 L66 72' stroke='%235ee9b5' stroke-width='9' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M31 57 H57' stroke='%235ee9b5' stroke-width='9' stroke-linecap='round'/%3E%3Ccircle cx='76' cy='34' r='7' fill='%23ff9d5c'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <header class="navbar">
-        <div class="logo">Ahmed<span>.dev</span></div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#accomplishments">Accomplishments</a></li>
-                <li><a href="#contact" class="btn-contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+<!-- ══════════ boot sequence ══════════ -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot__inner">
+    <pre class="boot__log" id="bootLog"></pre>
+    <div class="boot__bar"><span id="bootBar"></span></div>
+  </div>
+</div>
+
+<!-- ══════════ icon sprite ══════════ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5C5.7.5.6 5.6.6 11.9c0 5 3.3 9.3 7.8 10.8.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.9 1.2 1.9 1.2 3.2 0 4.6-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6a11.4 11.4 0 0 0 7.8-10.8C23.4 5.6 18.3.5 12 .5Z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M20.4 20.4h-3.6v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6h.1a3.8 3.8 0 0 1 3.4-1.9c3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13H3.5V9h3.6v11.4ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-.9-.8-1.7-1.8-1.7Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M3 6.5h18v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Zm0 .5 9 6.5L21 7"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8Zm-3.3 4c-.2 0-.5.1-.7.4-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.2.2 1.8 2.9 4.4 3.9 2.2.9 2.7.7 3.2.6.5 0 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.6-.3-1.6-.8c-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.1-.2 0-.4.1-.5l.5-.5.3-.6v-.5l-.8-1.9c-.2-.4-.4-.4-.6-.4h-.4Z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M10 14a4 4 0 0 0 5.7 0l3-3A4 4 0 0 0 13 5.3l-1.7 1.7M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1.7-1.7"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4-4.7-4.6 6.5-.9L12 2.6Z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l11-6.5-11-6.5Z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" d="M6 10.5h12v9H6v-9Zm2.5 0V7a3.5 3.5 0 1 1 7 0v3.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.5 1.5m11.2 11.2 1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M14 3H7a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7l-4-4Zm0 0v4h4M9 12h6m-6 4h6"/></symbol>
+</svg>
+
+<!-- ══════════ scroll progress ══════════ -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="spotlight" id="spotlight" aria-hidden="true"></div>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- ══════════ nav ══════════ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Home">
+    <span class="nav__mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100"><path d="M22 72 38 28h12l16 44" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 57h26" stroke="currentColor" stroke-width="9" stroke-linecap="round"/></svg>
+    </span>
+    <span class="nav__name">naguib<span class="dim">.sys</span></span>
+  </a>
+
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#about"><span class="idx">01</span>about</a>
+    <a href="#work"><span class="idx">02</span>work</a>
+    <a href="#projects"><span class="idx">03</span>projects</a>
+    <a href="#stack"><span class="idx">04</span>stack</a>
+    <a href="#contact"><span class="idx">05</span>contact</a>
+  </nav>
+
+  <div class="nav__tools">
+    <button class="kbtn" id="paletteOpen" aria-label="Open command palette">
+      <span>Jump to</span><kbd>⌘</kbd><kbd>K</kbd>
+    </button>
+    <button class="iconbtn" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme">
+      <svg class="ico ico--sun"><use href="#i-sun"/></svg>
+      <svg class="ico ico--moon"><use href="#i-moon"/></svg>
+    </button>
+    <button class="iconbtn burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ══════════ hero ══════════ -->
+<section class="hero" id="top">
+  <canvas class="hero__canvas" id="topology" aria-hidden="true"></canvas>
+  <div class="hero__grid" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="hero__status reveal">
+      <span class="pulse" aria-hidden="true"></span>
+      <span>Backend Engineer @ OptimaTech</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span>Cairo, EG</span>
+      <span class="sep" aria-hidden="true">/</span>
+      <span class="mono" id="localTime">--:--</span>
+    </p>
+
+    <h1 class="hero__title reveal" data-d="1">
+      <span class="line">Ahmed</span>
+      <span class="line">Mohamed <em>Naguib</em></span>
+    </h1>
+
+    <p class="hero__role reveal" data-d="2">
+      <span class="mono accent">&gt;</span> I build <span id="rotator" class="rotator"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+
+    <p class="hero__lede reveal" data-d="3">
+      Computer &amp; AI Engineering undergraduate, backend developer by trade. I build REST and
+      GraphQL services in <b>NestJS</b>, <b>PostgreSQL</b> and <b>Redis</b> — designing the schema,
+      writing the queries, and keeping the write path quick enough to survive a thousand people
+      arriving at once.
+    </p>
+
+    <div class="hero__cta reveal" data-d="4">
+      <a class="btn btn--solid" href="#projects">
+        Explore the system <svg class="ico"><use href="#i-arrow"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="#contact">Get in touch</a>
+    </div>
+
+    <ul class="hero__socials reveal" data-d="5">
+      <li><a href="https://github.com/AhmedNaguib01" target="_blank" rel="noopener" aria-label="GitHub"><svg class="ico"><use href="#i-github"/></svg></a></li>
+      <li><a href="https://www.linkedin.com/in/ahmed-naguib-075415328/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="ico"><use href="#i-linkedin"/></svg></a></li>
+      <li><a href="mailto:amnoe20052007@gmail.com" aria-label="Email"><svg class="ico"><use href="#i-mail"/></svg></a></li>
+      <li><a href="https://wa.me/201062796067" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ico"><use href="#i-whatsapp"/></svg></a></li>
+    </ul>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span></span>scroll</div>
+</section>
+
+<!-- ══════════ ticker ══════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span>NestJS</span><b>·</b><span>PostgreSQL</span><b>·</b><span>Redis</span><b>·</b><span>GraphQL</span><b>·</b><span>TypeScript</span><b>·</b><span>BullMQ</span><b>·</b><span>Docker</span><b>·</b><span>React</span><b>·</b><span>MongoDB</span><b>·</b><span>Supabase</span><b>·</b><span>C / C++</span><b>·</b><span>Firebase</span><b>·</b><span>Cloudflare Workers</span><b>·</b><span>Python</span><b>·</b>
+    <span>NestJS</span><b>·</b><span>PostgreSQL</span><b>·</b><span>Redis</span><b>·</b><span>GraphQL</span><b>·</b><span>TypeScript</span><b>·</b><span>BullMQ</span><b>·</b><span>Docker</span><b>·</b><span>React</span><b>·</b><span>MongoDB</span><b>·</b><span>Supabase</span><b>·</b><span>C / C++</span><b>·</b><span>Firebase</span><b>·</b><span>Cloudflare Workers</span><b>·</b><span>Python</span><b>·</b>
+  </div>
+</div>
+
+<!-- ══════════ metrics ══════════ -->
+<section class="metrics" aria-label="Key metrics">
+  <div class="wrap">
+   <div class="metrics__grid">
+    <div class="metric reveal">
+      <div class="metric__n"><span class="count" data-to="1000" data-suffix="+">0</span></div>
+      <div class="metric__l">concurrent learners sustained<br><span class="dim">after the queue rewrite</span></div>
+    </div>
+    <div class="metric reveal" data-d="1">
+      <div class="metric__n"><span class="count" data-to="61">0</span></div>
+      <div class="metric__l">REST endpoints shipped<br><span class="dim">across 8 modules, Reddit Replica</span></div>
+    </div>
+    <div class="metric reveal" data-d="2">
+      <div class="metric__n"><span class="count" data-to="6">0</span></div>
+      <div class="metric__l">role permission matrix<br><span class="dim">enforced server-side + RLS</span></div>
+    </div>
+    <div class="metric reveal" data-d="3">
+      <div class="metric__n"><span class="count" data-to="17" id="repoCount">0</span></div>
+      <div class="metric__l">public repositories<br><span class="dim" id="repoMeta">on github.com/AhmedNaguib01</span></div>
+    </div>
+   </div>
+  </div>
+</section>
+
+<!-- ══════════ about ══════════ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <header class="shead reveal">
+      <span class="shead__idx mono">01</span>
+      <h2 class="shead__t">Who's behind the API</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
     </header>
 
-    <section class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <p class="greeting">Hello, I'm</p>
-            <h1 class="gradient-text">Ahmed Mohamed Naguib</h1>
-            <h2 id="typewriter"></h2>
-            <p class="hero-desc">
-                Computer & AI Engineering Student at Ain Shams & East London University.
-                Specializing in Full-Stack Development and Software Engineering.
-            </p>
-            <div class="social-links" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://github.com/AhmedNaguib01" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/ahmed-naguib-075415328" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:amnoe20052007@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <a href="#projects" class="btn-primary">View My Work</a>
+    <div class="about">
+      <div class="about__media reveal">
+        <figure class="portrait">
+          <img src="images/naguib.jpeg" alt="Portrait of Ahmed Mohamed Naguib" loading="lazy" width="520" height="620">
+          <figcaption class="portrait__tag mono">
+            <span class="pulse pulse--sm" aria-hidden="true"></span> available for work
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="about__body">
+        <p class="reveal lead">
+          I'm a Computer &amp; Artificial Intelligence Engineering student at <b>Ain Shams University</b>
+          and the <b>University of East London</b>, working as a backend developer at
+          <b>OptimaTech</b> on a live e-learning platform.
+        </p>
+        <p class="reveal" data-d="1">
+          Most of what I enjoy sits underneath the interface: normalising a schema that grew into a JSON blob,
+          moving a write-heavy path off the hot loop, deciding where a permission check actually belongs.
+          I like problems where the correct answer is measurable — a query that stops timing out, a race
+          condition that stops happening.
+        </p>
+        <p class="reveal" data-d="2">
+          That interest started lower down the stack. I've written a kernel allocator in C, synchronised
+          shared resources with semaphores, and implemented logistic regression and SVMs from scratch before
+          reaching for a library. Away from the terminal I founded and still own
+          <a href="https://www.eduvance.au/" target="_blank" rel="noopener" class="ilink">Eduvance</a> —
+          a study platform that reached 16,000 students in the first eight months of this year,
+          growing almost eightfold.
+        </p>
+
+        <dl class="spec reveal" data-d="3">
+          <div><dt>role</dt><dd>Backend Engineer <span class="dim">· full-stack capable</span></dd></div>
+          <div><dt>runtime</dt><dd>Node.js · NestJS · Express · GraphQL</dd></div>
+          <div><dt>storage</dt><dd>PostgreSQL · MongoDB · Redis · Supabase</dd></div>
+          <div><dt>systems</dt><dd>C/C++ · OS internals · concurrency · TCP/IP</dd></div>
+          <div><dt>region</dt><dd>Cairo, Egypt <span class="dim">· UTC+3 · remote-friendly</span></dd></div>
+          <div><dt>langs</dt><dd>Arabic <span class="dim">(native)</span> · English <span class="dim">(fluent)</span></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ work / experience ══════════ -->
+<section class="section section--alt" id="work">
+  <div class="wrap">
+    <header class="shead reveal">
+      <span class="shead__idx mono">02</span>
+      <h2 class="shead__t">Where I've shipped</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
+    </header>
+
+    <ol class="log">
+      <li class="log__item reveal">
+        <div class="log__when mono">Jun 2026 — present</div>
+        <div class="log__body">
+          <h3 class="log__role">Back End Developer <span class="dim">(Intern, full-time remote)</span></h3>
+          <p class="log__org">OptimaTech for Technical Solutions <span class="chip">Egypt</span></p>
+          <ul class="log__points">
+            <li><b>Assessment engine (NestJS + GraphQL).</b> Migrated quizzes off a JSON-blob column into a normalised relational schema, then added atomic auto-grading that scores each attempt against its threshold, locks it, and triggers certificate issuance.</li>
+            <li><b>Video tracking throughput.</b> Removed per-ping database writes by buffering player heartbeats through a Redis/BullMQ queue with a background upsert worker — sustaining 1,000 concurrent learners with resumable cross-device playback.</li>
+            <li><b>Content security &amp; production.</b> Firebase Storage rules that verify an active PostgreSQL enrollment before any video is served, anti-cheating session timers with JWT ownership checks, and a Railway / Cloudflare Workers deployment with exception filtering and health endpoints.</li>
+          </ul>
+          <p class="log__tags mono">NestJS · GraphQL · PostgreSQL · Redis · BullMQ · Firebase · Railway · Cloudflare Workers</p>
         </div>
+      </li>
+
+      <li class="log__item reveal" data-d="1">
+        <div class="log__when mono">2023 — present</div>
+        <div class="log__body">
+          <h3 class="log__role">Founder &amp; Owner</h3>
+          <p class="log__org">Eduvance <span class="chip">eduvance.au</span></p>
+          <ul class="log__points">
+            <li>Founded, own and run a study platform for Edexcel IGCSE and IAL students — see below.</li>
+          </ul>
+          <p class="log__tags mono">Product ownership · Python · Community ops · Team leadership</p>
+        </div>
+      </li>
+    </ol>
+
+    <!-- ── case study: the pipeline ── -->
+    <div class="case reveal">
+      <div class="case__head">
+        <div>
+          <p class="case__kicker mono">case study / throughput</p>
+          <h3 class="case__title">1,000 learners, one write path</h3>
+          <p class="case__sub">Every video player sent a heartbeat straight to Postgres. Here's what changed.</p>
+        </div>
+        <div class="case__switch" role="group" aria-label="Toggle architecture">
+          <button class="case__btn is-on" data-arch="before">Before</button>
+          <button class="case__btn" data-arch="after">After</button>
+        </div>
+      </div>
+
+      <div class="case__stage" id="caseStage" data-arch="before">
+        <div class="flow">
+          <div class="flow__node" data-k="client">
+            <span class="flow__icon mono">◍</span>
+            <b>1,000 players</b>
+            <small>heartbeat every 5s</small>
+          </div>
+
+          <div class="flow__wire" data-w="1"><span class="pkt"></span><span class="pkt"></span><span class="pkt"></span><span class="pkt"></span></div>
+
+          <div class="flow__node" data-k="api">
+            <span class="flow__icon mono">⬡</span>
+            <b>NestJS API</b>
+            <small>progress module</small>
+          </div>
+
+          <div class="flow__wire" data-w="2"><span class="pkt"></span><span class="pkt"></span><span class="pkt"></span><span class="pkt"></span></div>
+
+          <div class="flow__node flow__node--queue" data-k="queue">
+            <span class="flow__icon mono">≣</span>
+            <b>Redis + BullMQ</b>
+            <small>buffered heartbeats</small>
+          </div>
+
+          <div class="flow__wire" data-w="3"><span class="pkt"></span></div>
+
+          <div class="flow__node" data-k="db">
+            <span class="flow__icon mono">▤</span>
+            <b>PostgreSQL</b>
+            <small>watch_progress</small>
+          </div>
+        </div>
+
+        <div class="case__readout">
+          <div class="ro">
+            <span class="ro__k mono">db writes / sec</span>
+            <span class="ro__v" data-before="≈ 200" data-after="≈ 1">≈ 200</span>
+          </div>
+          <div class="ro">
+            <span class="ro__k mono">write pattern</span>
+            <span class="ro__v" data-before="one row per ping" data-after="batched upsert">one row per ping</span>
+          </div>
+          <div class="ro">
+            <span class="ro__k mono">under load</span>
+            <span class="ro__v ro__v--flag" data-before="connection pool saturates" data-after="queue absorbs the burst">connection pool saturates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── venture: Eduvance ── -->
+    <section class="venture reveal" aria-labelledby="eduvance-h">
+      <div class="venture__glow" aria-hidden="true"></div>
+
+      <div class="venture__head">
+        <div class="venture__id">
+          <p class="venture__kicker mono">venture / founder &amp; owner</p>
+          <h3 class="venture__title" id="eduvance-h">Eduvance</h3>
+          <a class="venture__url mono" href="https://www.eduvance.au/" target="_blank" rel="noopener">
+            <span class="pulse pulse--sm" aria-hidden="true"></span>eduvance.au
+            <svg class="ico"><use href="#i-link"/></svg>
+          </a>
+        </div>
+        <p class="venture__lede">
+          A community-first study platform for <b>Edexcel IGCSE and IAL</b> students. Subject
+          resources, past papers, community-written notes and revision tools — all free, wrapped
+          around a Discord community that has grown into a volunteer organisation spanning
+          the globe. I founded it, and I own and run it today.
+        </p>
+      </div>
+
+      <div class="venture__stats">
+        <div class="vstat">
+          <span class="vstat__n">16k</span>
+          <span class="vstat__l">active students so far this year</span>
+        </div>
+        <div class="vstat">
+          <span class="vstat__n">+680%</span>
+          <span class="vstat__l">growth vs. the previous period</span>
+        </div>
+        <div class="vstat">
+          <span class="vstat__n">291k</span>
+          <span class="vstat__l">tracked interactions this year</span>
+        </div>
+        <div class="vstat">
+          <span class="vstat__n">15</span>
+          <span class="vstat__l">subjects, free, across IGCSE &amp; IAL</span>
+        </div>
+      </div>
+      <p class="venture__src mono">Google Analytics · eduvance.au · Jan – Aug 2026</p>
+
+      <ul class="venture__pts">
+        <li><b>Grew it almost eightfold in a year.</b> Traffic peaked through the April–May exam season at roughly four times its January baseline, which is exactly when students need the resources — the platform had to hold up on the days that mattered most.</li>
+        <li><b>Own the product end to end.</b> Direction, the resource library across fifteen subjects, the study tools built around each exam board, and the moderation structure that keeps a community this size healthy.</li>
+        <li><b>Built the organisation behind it.</b> Head and senior moderators, subject-specific helpers, developers and community contributors — recruited, trained and coordinated as volunteers across time zones.</li>
+        <li><b>Automated the day to day.</b> Python bots handle moderation and engagement so the team scales with the community instead of against it.</li>
+      </ul>
+
+      <a class="btn btn--blue" href="https://www.eduvance.au/" target="_blank" rel="noopener">
+        Visit eduvance.au <svg class="ico"><use href="#i-arrow"/></svg>
+      </a>
     </section>
+  </div>
+</section>
 
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <div class="about-image" data-aos="fade-right">
-                <img src="images/ahmed_naguib.jpeg" alt="Ahmed Mohamed Naguib">
-                <div class="image-border"></div>
-            </div>
-            <div class="about-content" data-aos="fade-left">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-cards">
-                    <div class="about-card">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <h4>Education</h4>
-                            <p>Computer & AI Engineering Student at <strong>Ain Shams University</strong> & <strong>University of East London</strong></p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <i class="fas fa-users"></i>
-                        <div>
-                            <h4>Leadership</h4>
-                            <p>Founder & Community Lead at <strong>Eduvance</strong> — a thriving community of 20,000+ students</p>
-                        </div>
-                    </div>
-                    <div class="about-card">
-                        <i class="fas fa-rocket"></i>
-                        <div>
-                            <h4>Expertise</h4>
-                            <p>Full-Stack Development • Mobile Apps • AI/Machine Learning • System Engineering</p>
-                        </div>
-                    </div>
-                </div>
-                <p class="about-mission">
-                    Driven by curiosity and a commitment to continuous learning, I build technology solutions that solve real-world problems.
-                </p>
-            </div>
+<!-- ══════════ projects ══════════ -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <header class="shead reveal">
+      <span class="shead__idx mono">03</span>
+      <h2 class="shead__t">Things I've built</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="filters reveal" role="tablist" aria-label="Filter projects">
+      <button class="filter is-on" data-f="all" role="tab" aria-selected="true">All <span class="mono">10</span></button>
+      <button class="filter" data-f="fullstack" role="tab" aria-selected="false">Full-stack <span class="mono">4</span></button>
+      <button class="filter" data-f="systems" role="tab" aria-selected="false">Systems <span class="mono">3</span></button>
+      <button class="filter" data-f="ai" role="tab" aria-selected="false">AI / ML <span class="mono">2</span></button>
+      <button class="filter" data-f="apps" role="tab" aria-selected="false">Apps <span class="mono">2</span></button>
+    </div>
+
+    <div class="cards" id="cards">
+
+      <!-- 1 — Inventory Command -->
+      <article class="card card--wide reveal" data-cat="fullstack" data-repo="Sales-and-Inventory-Management-System">
+        <div class="card__top">
+          <p class="card__kicker mono">01 / retail platform</p>
+          <div class="card__gh" data-gh></div>
         </div>
-    </section>
-
-    <section id="skills" class="section">
-        <h2 class="section-title" data-aos="fade-up">Technical Skills</h2>
-        <div class="skills-wrapper">
-            <div class="skill-card" data-aos="zoom-in" data-aos-delay="100">
-                <i class="fas fa-code skill-icon"></i>
-                <h3>Languages</h3>
-                <div class="tags">
-                    <span>Java</span>
-                    <span>C++</span>
-                    <span>C</span>
-                    <span>Python</span>
-                    <span>JavaScript</span>
-                    <span>C#</span>
-                </div>
-            </div>
-            <div class="skill-card" data-aos="zoom-in" data-aos-delay="200">
-                <i class="fas fa-layer-group skill-icon"></i>
-                <h3>Full Stack</h3>
-                <div class="tags">
-                    <span>React.js</span>
-                    <span>Node.js</span>
-                    <span>Express</span>
-                    <span>REST APIs</span>
-                    <span>Bootstrap</span>
-                </div>
-            </div>
-            <div class="skill-card" data-aos="zoom-in" data-aos-delay="300">
-                <i class="fas fa-database skill-icon"></i>
-                <h3>Tools & DB</h3>
-                <div class="tags">
-                    <span>MySQL</span>
-                    <span>SQL Server</span>
-                    <span>Git/GitHub</span>
-                    <span>Docker</span>
-                    <span>Jira</span>
-                </div>
-            </div>
+        <h3 class="card__title">Inventory Command</h3>
+        <p class="card__blurb">
+          A point-of-sale and inventory system for a multi-branch retail chain. Six roles — from Administrator
+          to Sales — each see only the modules they can act on, with permissions defined in the database and
+          enforced on the server, backed by row-level security on every table as a second line of defence.
+        </p>
+        <ul class="card__pts">
+          <li>Every stock-changing operation — sales, PO receiving, branch transfers — runs as an atomic PostgreSQL function writing to a stock-movement ledger.</li>
+          <li>A Gemini assistant grounded in read-only, branch-scoped database tools: it answers from real figures instead of generating them, and degrades to a clean 503 without an API key.</li>
+        </ul>
+        <p class="card__stack mono">React · Vite · Express · Supabase · PostgreSQL · PL/pgSQL · Gemini</p>
+        <div class="card__links">
+          <a href="https://sales-and-inventory-management-syst-six.vercel.app" target="_blank" rel="noopener" class="lnk lnk--live"><svg class="ico"><use href="#i-link"/></svg>Live demo</a>
+          <a href="https://github.com/AhmedNaguib01/Sales-and-Inventory-Management-System" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
         </div>
-    </section>
+      </article>
 
-    <section id="projects" class="section">
-        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-        <div class="projects-grid">
-            <div class="project-card" data-aos="fade-up">
-                <div class="card-content">
-                    <h3>AirGym Management App</h3>
-                    <p>Engineered a modular system for managing memberships, trainers, and payments using MVC architecture.</p>
-                    <div class="tech-stack">
-                        <span>Java</span><span>JavaFX</span><span>SQL</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-content">
-                    <h3>RetailX E-Commerce</h3>
-                    <p>Full-featured desktop e-commerce platform with catalog, cart, wishlist, and secure session handling.</p>
-                    <div class="tech-stack">
-                        <span>Java</span><span>MVC/DAO</span><span>Security</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-content">
-                    <h3>Social Sphere</h3>
-                    <p>Social network simulation using Graphs (BFS/DFS) for friend recommendations and connections.</p>
-                    <div class="tech-stack">
-                        <span>C++</span><span>Graphviz</span><span>Algorithms</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card" data-aos="fade-up">
-                <div class="card-content">
-                    <h3>Tiny Language Compiler</h3>
-                    <p>Designed a compiler with modular scanner and parser. Implemented recursive-descent parsing.</p>
-                    <div class="tech-stack">
-                        <span>C#</span><span>Compiler Design</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-             <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-content">
-                    <h3>FOS Kernel</h3>
-                    <p>Operating Systems project implementing memory management (First Fit) and concurrency (Semaphores).</p>
-                    <div class="tech-stack">
-                        <span>C</span><span>OS Concepts</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-             <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="card-content">
-                    <h3>Fitness Tracker Web</h3>
-                    <p>Responsive health tracking app for calories and exercise metrics with SQL backend validation.</p>
-                    <div class="tech-stack">
-                        <span>HTML/CSS</span><span>JS</span><span>SQL</span>
-                    </div>
-                    <div class="card-links">
-                        <a href="#" target="_blank"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
+      <!-- 2 — Reddit Replica -->
+      <article class="card card--wide reveal" data-cat="fullstack" data-repo="Reddit-Replica">
+        <div class="card__top">
+          <p class="card__kicker mono">02 / social platform</p>
+          <div class="card__gh" data-gh></div>
         </div>
-    </section>
-
-    <section id="accomplishments" class="section">
-        <h2 class="section-title" data-aos="fade-up">Accomplishments</h2>
-        <div class="timeline">
-            <div class="timeline-item" data-aos="fade-left">
-                <div class="timeline-dot"></div>
-                <div class="timeline-date">2023 - Present</div>
-                <div class="timeline-content">
-                    <h3>Founder & Community Lead</h3>
-                    <h4>Eduvance</h4>
-                    <p>Founded and scaled an academic community of <strong>20,000+ students</strong>. Organized international teams and developed Python automation bots for community engagement.</p>
-                </div>
-            </div>
+        <h3 class="card__title">Reddit Replica</h3>
+        <p class="card__blurb">
+          A full Reddit clone: communities, arbitrarily nested comment threads, voting, karma, direct
+          messaging, custom feeds and full-text search. The backend exposes <b>61 endpoints across 8 modules</b>
+          and runs either as a long-lived Node process or a Vercel serverless function from the same entry point.
+        </p>
+        <ul class="card__pts">
+          <li>Local credentials with bcrypt alongside Google OAuth 2.0, JWT sessions, and password reset over email.</li>
+          <li>Messaging and notifications refresh on a visibility-aware polling interval rather than WebSockets — updates pause entirely while the tab is hidden.</li>
+        </ul>
+        <p class="card__stack mono">React 19 · Express 5 · Mongoose · MongoDB Atlas · JWT · Gemini · Vercel</p>
+        <div class="card__links">
+          <a href="https://reddit-replica-asu.vercel.app/" target="_blank" rel="noopener" class="lnk lnk--live"><svg class="ico"><use href="#i-link"/></svg>Live demo</a>
+          <a href="https://github.com/AhmedNaguib01/Reddit-Replica" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
         </div>
-    </section>
+      </article>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <h2 class="footer-title">Let's Build Something Amazing.</h2>
-            <a href="mailto:amnoe20052007@gmail.com" class="btn-primary">Get In Touch</a>
-            <div class="footer-socials">
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-            </div>
-            <p class="copyright">&copy; 2025 Ahmed Mohamed Naguib.</p>
+      <!-- 3 — FOS Kernel -->
+      <article class="card reveal" data-cat="systems">
+        <div class="card__top">
+          <p class="card__kicker mono">03 / os internals</p>
+          <span class="badge badge--lock"><svg class="ico"><use href="#i-lock"/></svg>private</span>
         </div>
-    </footer>
+        <h3 class="card__title">FOS Kernel</h3>
+        <p class="card__blurb">
+          Kernel-level dynamic memory allocation built on a First Fit allocator, plus resolution of race
+          conditions in shared-resource access using semaphores and mutexes. Written against the FOS
+          educational kernel in C.
+        </p>
+        <p class="card__stack mono">C · Paging · Semaphores · Mutexes · Concurrency</p>
+        <div class="card__links"><span class="lnk lnk--muted">Available on request</span></div>
+      </article>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
-    </script>
+      <!-- 4 — EduVerse -->
+      <article class="card reveal" data-cat="fullstack" data-repo="University-Management-System">
+        <div class="card__top">
+          <p class="card__kicker mono">04 / mern platform</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">EduVerse</h3>
+        <p class="card__blurb">
+          A university management system on the MERN stack — course CRUD with capacity limits, material
+          uploads, threaded discussions with five reaction types, direct messaging, and four instructor-only
+          analytics reports including a weighted engagement leaderboard.
+        </p>
+        <p class="card__stack mono">React 19 · Express · MongoDB · TanStack Query · Radix UI · JWT</p>
+        <div class="card__links">
+          <a href="https://edu-verse-frontend-chi.vercel.app" target="_blank" rel="noopener" class="lnk lnk--live"><svg class="ico"><use href="#i-link"/></svg>Live demo</a>
+          <a href="https://github.com/AhmedNaguib01/University-Management-System" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 5 — Social Sphere -->
+      <article class="card reveal" data-cat="systems" data-repo="Social-Sphere">
+        <div class="card__top">
+          <p class="card__kicker mono">05 / graph algorithms</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">Social Sphere</h3>
+        <p class="card__blurb">
+          A social-network simulator whose friend recommendations rank candidates out of a priority queue —
+          scoring by traversal depth first, then by mutual-friend frequency at depth two — over an adjacency
+          list walked with BFS/DFS. Graphviz renders the network for debugging large graphs.
+        </p>
+        <p class="card__stack mono">C++ · Graphs · BFS/DFS · Priority queues · Graphviz</p>
+        <div class="card__links">
+          <a href="https://github.com/AhmedNaguib01/Social-Sphere" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 6 — MNIST -->
+      <article class="card reveal" data-cat="ai" data-repo="Machine-Learning-MNIST">
+        <div class="card__top">
+          <p class="card__kicker mono">06 / machine learning</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">MNIST From Scratch</h3>
+        <p class="card__blurb">
+          Logistic regression, k-nearest neighbours and a linear SVM implemented without a modelling library,
+          across binary and 10-class MNIST. Phase two adds One-vs-Rest with L1/L2/ElasticNet regularisation,
+          PCA and HOG features, bias-variance analysis and cross-validated hyperparameter tuning.
+        </p>
+        <p class="card__stack mono">Python · NumPy · Jupyter · PCA · HOG · SVM</p>
+        <div class="card__links">
+          <a href="https://github.com/AhmedNaguib01/Machine-Learning-MNIST" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 7 — Jigsaw -->
+      <article class="card reveal" data-cat="ai" data-repo="Jigsaw_Puzzle_Solver">
+        <div class="card__top">
+          <p class="card__kicker mono">07 / image processing</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">Jigsaw Puzzle Solver</h3>
+        <p class="card__blurb">
+          Reassembles shuffled square puzzles end to end: Sobel gradient analysis detects the grid size
+          (2×2, 4×4, 8×8), per-piece features are extracted, and size-specific solvers use RGB seam matching
+          with beam search and a refinement pass to reconstruct the image.
+        </p>
+        <p class="card__stack mono">Python · OpenCV · NumPy · SciPy · Beam search · Tkinter GUI</p>
+        <div class="card__links">
+          <a href="https://github.com/AhmedNaguib01/Jigsaw_Puzzle_Solver" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 8 — Tiny compiler -->
+      <article class="card reveal" data-cat="systems" data-repo="Tiny-Language-Compiler">
+        <div class="card__top">
+          <p class="card__kicker mono">08 / compilers</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">TINY Language Compiler</h3>
+        <p class="card__blurb">
+          Front end for the TINY language with a modular scanner and a recursive-descent parser that emits a
+          syntax tree — the tokeniser and grammar kept separable so each stage can be tested on its own.
+        </p>
+        <p class="card__stack mono">C# · Lexical analysis · Recursive descent · Parse trees</p>
+        <div class="card__links">
+          <a href="https://github.com/AhmedNaguib01/Tiny-Language-Compiler" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 9 — Air-Gym -->
+      <article class="card reveal" data-cat="apps" data-repo="Air-Gym">
+        <div class="card__top">
+          <p class="card__kicker mono">09 / desktop app</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">Air-Gym</h3>
+        <p class="card__blurb">
+          A JavaFX gym-management desktop app on MVC + DAO over SQL Server via JDBC. Members buy, freeze,
+          extend and cancel memberships and book sessions; admins get CRUD across trainers, branches and
+          equipment plus revenue and expense dashboards driven by stored procedures.
+        </p>
+        <p class="card__stack mono">Java · JavaFX · SQL Server · JDBC · MVC/DAO · T-SQL</p>
+        <div class="card__links">
+          <a href="https://youtu.be/diQB5B5d1SY" target="_blank" rel="noopener" class="lnk lnk--live"><svg class="ico"><use href="#i-play"/></svg>Demo video</a>
+          <a href="https://github.com/AhmedNaguib01/Air-Gym" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+      <!-- 10 — YAWYE -->
+      <article class="card reveal" data-cat="apps" data-repo="Fitness-Tracker-Website">
+        <div class="card__top">
+          <p class="card__kicker mono">10 / web app</p>
+          <div class="card__gh" data-gh></div>
+        </div>
+        <h3 class="card__title">YAWYE — Fitness Tracker</h3>
+        <p class="card__blurb">
+          "You Are What You Eat": food and exercise logging with a caloric ring against a daily goal and a
+          live macronutrient breakdown, rendered with Google Charts as entries are added.
+        </p>
+        <p class="card__stack mono">JavaScript · HTML · CSS · Google Charts</p>
+        <div class="card__links">
+          <a href="https://github.com/AhmedNaguib01/Fitness-Tracker-Website" target="_blank" rel="noopener" class="lnk"><svg class="ico"><use href="#i-github"/></svg>Source</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="cards__foot reveal">
+      <a class="btn btn--ghost" href="https://github.com/AhmedNaguib01?tab=repositories" target="_blank" rel="noopener">
+        <svg class="ico"><use href="#i-github"/></svg> All repositories
+      </a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ stack ══════════ -->
+<section class="section section--alt" id="stack">
+  <div class="wrap">
+    <header class="shead reveal">
+      <span class="shead__idx mono">04</span>
+      <h2 class="shead__t">The toolkit</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="stack">
+      <div class="stackcol reveal">
+        <h3 class="stackcol__h"><span class="mono dim">/</span> Languages</h3>
+        <ul class="tags">
+          <li class="tag tag--core">TypeScript</li><li class="tag tag--core">JavaScript ES6+</li>
+          <li class="tag tag--core">C</li><li class="tag tag--core">C++</li>
+          <li class="tag">Python</li><li class="tag">Java</li><li class="tag">SQL</li>
+          <li class="tag">C#</li><li class="tag">Dart</li><li class="tag">Assembly</li><li class="tag">MATLAB</li>
+        </ul>
+      </div>
+
+      <div class="stackcol reveal" data-d="1">
+        <h3 class="stackcol__h"><span class="mono dim">/</span> Backend &amp; web</h3>
+        <ul class="tags">
+          <li class="tag tag--core">NestJS</li><li class="tag tag--core">Node.js</li>
+          <li class="tag tag--core">Express</li><li class="tag tag--core">GraphQL</li>
+          <li class="tag tag--core">REST</li><li class="tag">JWT / RBAC</li>
+          <li class="tag">BullMQ</li><li class="tag">React</li><li class="tag">Flutter</li>
+        </ul>
+      </div>
+
+      <div class="stackcol reveal" data-d="2">
+        <h3 class="stackcol__h"><span class="mono dim">/</span> Data &amp; infra</h3>
+        <ul class="tags">
+          <li class="tag tag--core">PostgreSQL</li><li class="tag tag--core">Redis</li>
+          <li class="tag tag--core">MongoDB</li><li class="tag">Supabase</li>
+          <li class="tag">Firebase</li><li class="tag">Docker</li>
+          <li class="tag">Railway</li><li class="tag">Vercel</li><li class="tag">Cloudflare Workers</li>
+        </ul>
+      </div>
+
+      <div class="stackcol reveal" data-d="3">
+        <h3 class="stackcol__h"><span class="mono dim">/</span> Systems &amp; practice</h3>
+        <ul class="tags">
+          <li class="tag tag--core">OS internals</li><li class="tag tag--core">Multithreading</li>
+          <li class="tag">TCP/IP</li><li class="tag">Git</li><li class="tag">GitHub Actions</li>
+          <li class="tag">Jira</li><li class="tag">Agile / Scrum</li>
+          <li class="tag">Testing</li><li class="tag">Postman</li><li class="tag">GDB</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- education + certs -->
+    <div class="edu">
+      <div class="edu__col reveal">
+        <h3 class="edu__h mono">education</h3>
+        <div class="edu__item">
+          <b>B.Sc. Computer &amp; Artificial Intelligence Engineering</b>
+          <span class="edu__org">Ain Shams University &amp; University of East London</span>
+          <span class="edu__meta mono">2023 — present · Cairo, Egypt</span>
+          <p class="edu__note">Algorithms · Operating Systems · Compilers · Databases · Data Structures · OOP · Artificial Intelligence · Computer Organization</p>
+        </div>
+      </div>
+
+      <div class="edu__col reveal" data-d="1">
+        <h3 class="edu__h mono">certifications</h3>
+        <ul class="certs">
+          <li>
+            <a href="http://ude.my/UC-7509fc90-187a-4a3f-bdeb-39839df833c2" target="_blank" rel="noopener">
+              <b>Full-Stack Web Development</b><span class="dim">Udemy</span><svg class="ico"><use href="#i-arrow"/></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://drive.google.com/file/d/1M6_mqh6OJC_hYcvZXmPiRWRiKIr01m6m/view?usp=sharing" target="_blank" rel="noopener">
+              <b>Mobile App Development Training</b><span class="dim">NTI · Jul–Aug 2025</span><svg class="ico"><use href="#i-arrow"/></svg>
+            </a>
+          </li>
+          <li>
+            <span class="certs__static">
+              <b>AI-Powered Digital Operations &amp; Engineering</b><span class="dim">Coach Academy</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ contact ══════════ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <header class="shead reveal">
+      <span class="shead__idx mono">05</span>
+      <h2 class="shead__t">Open a connection</h2>
+      <span class="shead__rule" aria-hidden="true"></span>
+    </header>
+
+    <div class="contact__grid">
+      <div class="reveal">
+        <p class="contact__big">Got a backend<br>that needs to <em>hold</em>?</p>
+        <p class="contact__lede">
+          I'm open to backend, full-stack and software engineering roles — internships, part-time
+          alongside study, or freelance. Fastest reply is email or WhatsApp.
+        </p>
+        <a class="btn btn--solid btn--lg" href="mailto:amnoe20052007@gmail.com?subject=Hello%20Ahmed">
+          amnoe20052007@gmail.com <svg class="ico"><use href="#i-arrow"/></svg>
+        </a>
+      </div>
+
+      <ul class="contact__list reveal" data-d="1">
+        <li><a href="mailto:amnoe20052007@gmail.com"><svg class="ico"><use href="#i-mail"/></svg><span class="k mono">email</span><span class="v">amnoe20052007@gmail.com</span></a></li>
+        <li><a href="https://wa.me/201062796067" target="_blank" rel="noopener"><svg class="ico"><use href="#i-whatsapp"/></svg><span class="k mono">whatsapp</span><span class="v">+20 106 279 6067</span></a></li>
+        <li><a href="https://www.linkedin.com/in/ahmed-naguib-075415328/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-linkedin"/></svg><span class="k mono">linkedin</span><span class="v">ahmed-naguib</span></a></li>
+        <li><a href="https://github.com/AhmedNaguib01" target="_blank" rel="noopener"><svg class="ico"><use href="#i-github"/></svg><span class="k mono">github</span><span class="v">AhmedNaguib01</span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <p class="mono">© <span id="year">2026</span> Ahmed Mohamed Naguib — Cairo, Egypt</p>
+    <p class="mono dim">Hand-built. No framework, no build step. <button class="linkbtn" id="paletteOpen2">Press ⌘K</button></p>
+  </div>
+</footer>
+
+<!-- ══════════ command palette ══════════ -->
+<div class="palette" id="palette" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+  <div class="palette__scrim" data-close></div>
+  <div class="palette__box">
+    <div class="palette__field">
+      <span class="mono accent">›</span>
+      <input id="paletteInput" type="text" placeholder="Jump to a section, project or link…" autocomplete="off" spellcheck="false" aria-label="Search">
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette__list" id="paletteList" role="listbox"></ul>
+    <div class="palette__foot mono"><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>↵</kbd> open <kbd>esc</kbd> close</div>
+  </div>
+</div>
+
+<script src="script.js" defer></script>
 </body>
 </html>
