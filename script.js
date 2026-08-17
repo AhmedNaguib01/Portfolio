@@ -99,26 +99,6 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
   $$('.reveal').forEach(el => revealer.observe(el));
 
-  /* ── animated counters ─────────────────────────────────── */
-  const counters = new IntersectionObserver((entries, obs) => {
-    entries.forEach(en => {
-      if (!en.isIntersecting) return;
-      const el = en.target;
-      obs.unobserve(el);
-      const to = +el.dataset.to, suffix = el.dataset.suffix || '';
-      if (reduced) { el.textContent = to.toLocaleString() + suffix; return; }
-      const dur = 1300, t0 = performance.now();
-      const step = now => {
-        const p = Math.min((now - t0) / dur, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(to * eased).toLocaleString() + (p === 1 ? suffix : '');
-        if (p < 1) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    });
-  }, { threshold: 0.5 });
-  $$('.count').forEach(el => counters.observe(el));
-
   /* ── hero role rotator ─────────────────────────────────── */
   const rotator = $('#rotator');
   const phrases = [
@@ -221,13 +201,6 @@
       if (!Array.isArray(repos)) return;
 
       const byName = new Map(repos.map(r => [r.name, r]));
-
-      // headline repo count
-      const countEl = $('#repoCount');
-      if (countEl) { countEl.dataset.to = repos.length; }
-      const meta = $('#repoMeta');
-      const newest = repos.reduce((a, b) => (new Date(a.pushed_at) > new Date(b.pushed_at) ? a : b), repos[0]);
-      if (meta && newest) meta.textContent = `last push ${relative(newest.pushed_at)} · ${newest.name}`;
 
       // per-card badges
       $$('#cards .card[data-repo]').forEach(card => {
