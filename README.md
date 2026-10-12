@@ -27,8 +27,7 @@ three files and a photo.
 | `style.css` | Design tokens, components, responsive and reduced-motion rules |
 | `script.js` | Boot sequence, canvas, palette, filters, GitHub fetch |
 | `images/` | Portrait |
-| `resume.tex` | LaTeX source for the CV |
-| `aboutme.md` | GitHub profile README source |
+| `CV.md` | LaTeX source for the CV |
 
 ## Running locally
 

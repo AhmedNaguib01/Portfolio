@@ -231,7 +231,7 @@
     { g: 'go',      t: 'Stack & education',         d: '04',       a: () => jump('#stack') },
     { g: 'go',      t: 'Contact',                   d: '05',       a: () => jump('#contact') },
 
-    { g: 'open',    t: 'Eduvance — my platform',    d: 'eduvance.au', a: () => open_('https://www.eduvance.au/') },
+    { g: 'open',    t: 'Eduvance · my platform',    d: 'eduvance.au', a: () => open_('https://www.eduvance.au/') },
     { g: 'open',    t: 'Inventory Command',         d: 'live',     a: () => open_('https://sales-and-inventory-management-syst-six.vercel.app') },
     { g: 'open',    t: 'Reddit Replica',            d: 'live',     a: () => open_('https://reddit-replica-asu.vercel.app/') },
     { g: 'open',    t: 'EduVerse',                  d: 'live',     a: () => open_('https://edu-verse-frontend-chi.vercel.app') },
